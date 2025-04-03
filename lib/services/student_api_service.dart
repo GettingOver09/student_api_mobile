@@ -63,4 +63,17 @@ class StudentApiService {
       );
     }
   }
+
+  Future<void> deleteStudent(int id) async {
+    final response = await http.delete(
+      Uri.parse('${baseUrl}students/$id/'),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    if (response.statusCode != 200 && response.statusCode != 204) {
+      throw Exception(
+        'Failed to delete student (Status: ${response.statusCode})',
+      );
+    }
+  }
 }

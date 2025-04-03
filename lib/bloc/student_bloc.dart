@@ -11,6 +11,7 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
     on<FetchStudents>(_onFetchStudents);
     on<CreateStudent>(_onCreateStudent);
     on<EditStudent>(_onEditStudent);
+    on<DeleteStudent>(_onDeleteStudent);
   }
 
   Future<void> _onFetchStudents(
@@ -61,6 +62,25 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
       add(FetchStudents());
     } catch (e) {
       emit(StudentError(e.toString()));
+    }
+  }
+
+  Future<void> _onDeleteStudent(
+    DeleteStudent event,
+    Emitter<StudentState> emit,
+  ) async {
+    if (state is StudentLoaded) {
+      final currentStudents = (state as StudentLoaded).students;
+      emit(StudentDeleting(currentStudents));
+
+      try {
+        await studentApiService.deleteStudent(event.id);
+        emit(StudentDeleted(event.id));
+        add(FetchStudents());
+      } catch (e) {
+        emit(StudentError(e.toString()));
+        emit(StudentLoaded(currentStudents));
+      }
     }
   }
 }

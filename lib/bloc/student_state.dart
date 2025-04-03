@@ -25,6 +25,16 @@ class StudentEdited extends StudentState {
   StudentEdited(this.student);
 }
 
+class StudentDeleting extends StudentState {
+  final List<Student> currentStudents;
+  StudentDeleting(this.currentStudents);
+}
+
+class StudentDeleted extends StudentState {
+  final int deletedId;
+  StudentDeleted(this.deletedId);
+}
+
 // Error state
 class StudentError extends StudentState {
   final String error;

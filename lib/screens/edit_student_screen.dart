@@ -49,10 +49,14 @@ class _EditStudentScreenState extends State<EditStudentScreen> {
                 controller: _usernameController,
                 decoration: const InputDecoration(labelText: 'Username'),
               ),
+              const SizedBox(height: 16),
+
               TextFormField(
                 controller: _emailController,
                 decoration: const InputDecoration(labelText: 'Email'),
               ),
+              const SizedBox(height: 16),
+
               TextFormField(
                 controller: _passwordController,
                 decoration: const InputDecoration(labelText: 'Password'),

@@ -19,3 +19,9 @@ class EditStudent extends StudentEvent {
 
   EditStudent({required this.id, this.username, this.email, this.password});
 }
+
+class DeleteStudent extends StudentEvent {
+  final int id;
+
+  DeleteStudent(this.id);
+}
