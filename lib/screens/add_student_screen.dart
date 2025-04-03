@@ -29,10 +29,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
     return BlocListener<StudentBloc, StudentState>(
       listener: (context, state) {
         if (state is StudentCreated) {
-          // Only navigate back after successful creation
           Navigator.pop(context);
-
-          // Show success message in the list screen
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Student created successfully!')),
           );

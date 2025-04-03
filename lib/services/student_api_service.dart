@@ -16,14 +16,14 @@ class StudentApiService {
     }
   }
 
-  Future<Object> createStudent(
+  Future<Student> createStudent(
     String username,
     String email,
     String password,
   ) async {
     final response = await http.post(
-      Uri.parse('${baseUrl}students'),
-      headers: {'Content-Type': 'application/json '},
+      Uri.parse('${baseUrl}students/'),
+      headers: {'Content-Type': 'application/json'},
       body: json.encode({
         'username': username,
         'email': email,
@@ -34,7 +34,7 @@ class StudentApiService {
     if (response.statusCode == 201) {
       return Student.fromJson(json.decode(response.body));
     } else {
-      return Exception('Failed to create student');
+      throw Exception('Failed to create student');
     }
   }
 
